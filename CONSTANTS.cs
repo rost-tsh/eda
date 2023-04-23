@@ -8,7 +8,8 @@ namespace eda
 {
     internal class CONSTANTS
     {
-        public const string PATH = "C:\\Users\\Rost\\source\\repos\\eda\\eda\\меню.txt";
+        public const string PATH = @"..\..\..\меню.txt";
+
     }
 
 

@@ -71,7 +71,7 @@ namespace eda
 
         public void WorkWithFile(string PATH)
         {
-            StreamReader sr = new StreamReader(eda.CONSTANTS.PATH);
+            StreamReader sr = new StreamReader(PATH);
             List<Menus> newmenu = new List<Menus>();
             WorkInFile(sr);
             

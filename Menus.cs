@@ -79,40 +79,33 @@ namespace eda
             sr.Close();
             
         }
+        public void Show(string type)
+        {
+            if (type == "Б")
+            {
+                this.ChangeBMenu();
+            }
+            ShowMenu(menu);
 
+        }
         public void ShowMenu(List<Menus> menu)
         {
 
             Console.WriteLine("Что будете заказывать? ");
-            int k = 0;
+            
             for (int i = 0; i < menu.Count(); i++){ 
                 Console.Write($"{i + 1} - {menu[i].GName()}, ");
             };
             Console.WriteLine($"{menu.Count() + 1} - Завершить заказ");
         }
 
-        public void GetAndShow(string type)
-        {
-            if (type == "Б") {
-                this.ChangeBMenu();
-            }
-            ShowMenu(menu);
-           
-        }
-
-        int min(int a, int b)
-        {
-            return a < b ? a : b;
-        }
-
-
 
         void ChangeBMenu()
         {
             List<Menus> Bmenu = new List<Menus>();
             string type = "Б";
-            for (int i = 0; i < this.menu.Count(); i++) { 
-                if (this.menu[i].type == type)
+            for (int i = 0; i < menu.Count(); i++) { 
+                if (menu[i].type == type)
                 {
                     Bmenu.Add(this.menu[i]);
                 }
@@ -121,7 +114,7 @@ namespace eda
         }
 
         public int GCount() { 
-            return this.menu.Count();
+            return menu.Count();
         }
 
         double NewCost(int cost, int count)
@@ -133,29 +126,29 @@ namespace eda
             double sum = 0;
             double sum1 = 0;
 
-            foreach (Menus val in this.menu.Distinct())
+            foreach (Menus val in menu.Distinct())
             {
-                int count = this.menu.Where(x => x == val).Count();
+                int count = menu.Where(x => x == val).Count();
                 Console.WriteLine(val.GName() + " - " + count + " раз");
                 if (type == "А")
                 {
-                    sum1 += 2 * NewCost(val.GCost(), count);
+                    sum1 += 2 * NewCost(val.cost, count);
 
                 }
                 else if (count >= 3)
                 {
-                    sum1 += 0.8 * NewCost(val.GCost(), count);
-                    sum += NewCost(val.GCost(), count);
+                    sum1 += 0.8 * NewCost(val.cost, count);
+                    sum += NewCost(val.cost, count);
                 }
                 else if (count == 2)
                 {
-                    sum1 += 0.9 * NewCost(val.GCost(), count);
-                    sum += NewCost(val.GCost(), count);
+                    sum1 += 0.9 * NewCost(val.cost, count);
+                    sum += NewCost(val.cost, count);
                 }
                 else
                 {
-                    sum1 += NewCost(val.GCost(), count);
-                    sum += NewCost(val.GCost(), count);
+                    sum1 += NewCost(val.cost, count);
+                    sum += NewCost(val.cost, count);
                 }
 
             }

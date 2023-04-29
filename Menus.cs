@@ -49,36 +49,37 @@ namespace eda
         public List<Menus> menu = new List<Menus>();
 
 
-        void WorkInFile(StreamReader sr)
-        {
-            String? line;
-           
-            line = sr.ReadLine();
-
-            while (line != null)
-            {
- 
-                string[] words = line.Split(' ');
-                this.menu.Add(Edit(words));
-
-                Console.WriteLine(line);
-                
-                line = sr.ReadLine();
-                
-            }
-            
-        }
+        
 
         public void WorkWithFile(string PATH)
         {
             StreamReader sr = new StreamReader(PATH);
-            List<Menus> newmenu = new List<Menus>();
             WorkInFile(sr);
             
             //close the file
             sr.Close();
             
         }
+        private void WorkInFile(StreamReader sr)
+        {
+            String? line;
+
+            line = sr.ReadLine();
+
+            while (line != null)
+            {
+
+                string[] words = line.Split(' ');
+                this.menu.Add(Edit(words));
+
+                Console.WriteLine(line);
+
+                line = sr.ReadLine();
+
+            }
+
+        }
+
         public void Show(string type)
         {
             if (type == "Б")
